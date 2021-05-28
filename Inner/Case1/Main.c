@@ -73,7 +73,7 @@ int main (void)
 	Initial_MOXA_UART();
 	Timer1_initial();
 	Initial_UART2();
-	I2C_Initial();
+//	I2C_Initial();
 		
 
 	
@@ -133,13 +133,13 @@ int main (void)
 	
 	
 	
-	Read_All_EEROM_Information();
-	math_a=Read_first_information();	
+//	Read_All_EEROM_Information();
+//	math_a=Read_first_information();	
 //  IC_Data.Save_struct.Now_Total_Capacity=525;  	
 	
 	IC_Data.Save_struct.Battery_ID=44;
 	IC_Data_Save_IF.Battery_ID_IF = 1;
-	EEPROM.Save_Count=5000;	
+//	EEPROM.Save_Count=5000;	
     /***************** 電池 ID ******************/  //19091211
 	IC_Data.Save_struct.S_N[0] = 1;
 	IC_Data.Save_struct.S_N[1] = 9;
@@ -177,9 +177,9 @@ int main (void)
 		Battery_LED_SET(0);	
 				
 		math_a=1;
-		EEPROM_Write( 0 ,First_Use_Addr, &math_a , 1);
-		while(I2C_Data.TIF==0);
-		I2C_Data.TIF=0;			
+//		EEPROM_Write( 0 ,First_Use_Addr, &math_a , 1);
+//		while(I2C_Data.TIF==0);
+//		I2C_Data.TIF=0;			
 	}	
 
 
@@ -197,7 +197,7 @@ int main (void)
 				IC_Data.Save_struct.Capacity_To_Voltage=Get_Capacity_To_Voltage_variable();	
 				IC_Data_Save_IF.Now_Total_Capacity_IF = 1;
 				IC_Data_Save_IF.Capacity_To_Voltage_IF = 1;
-				EEPROM.Save_Count=5000;						 
+//				EEPROM.Save_Count=5000;						 
 			 
 			 
 				Write_Coulomb_Data(0x0007,FULL_Battery_Capacity);//0x0007  剩下電量0.0~6553.5Ah
@@ -320,13 +320,13 @@ int main (void)
 			Sent_struct.End_Flag=0;
 			Receive_Customer_Pannal();//將Customer_Pannal傳送過來的資料整理
 		}
-		if(!I2C_Data.Busy_IF)
-		{
-			if(EEPROM.Save_IF)
-			{
-				Write_EEROM_information();
-			}
-	  }	
+//		if(!I2C_Data.Busy_IF)
+//		{
+//			if(EEPROM.Save_IF)
+//			{
+//				Write_EEROM_information();
+//			}
+//        }	
 		if(MOXA.RIF)
 		{		
 			MOXA_Work_Function();

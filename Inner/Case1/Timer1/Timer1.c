@@ -130,15 +130,15 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void)
 		}							
 		
 		//紀錄EROM倒數計時
-		if(EEPROM.Save_Count)
-		{
-			EEPROM.Save_Count--;	
-			if(EEPROM.Save_Count==0)
-			{
-				EEPROM.Save_IF=1;
-			}
-		}
-		
+//		if(EEPROM.Save_Count)
+//		{
+//			EEPROM.Save_Count--;	
+//			if(EEPROM.Save_Count==0)
+//			{
+//				EEPROM.Save_IF=1;
+//			}
+//		}
+//		
 		//使用時間計時		
 		if(IC_Data.ms==0)
 		{
@@ -151,7 +151,7 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void)
 				{
 					IC_Data.Save_struct.minute=0;
 					IC_Data_Save_IF.Hour_IF=1;
-					EEPROM.Save_IF=1;
+//					EEPROM.Save_IF=1;
 					if(IC_Data.Save_struct.Hour==23)
 					{
 						IC_Data.Save_struct.Hour=0;

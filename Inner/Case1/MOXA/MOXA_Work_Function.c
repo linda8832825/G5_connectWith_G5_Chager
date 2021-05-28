@@ -111,7 +111,7 @@ void MOXA_Work_Function(void)
 											index=&IC_Data.Fake_Voltage;
 											math_b=2;						
 										break;		
-                                    case 0x10:
+                                    case 0x10://弄reset筿溃翴
                                             index=&Coulomb_Data.x2;
                                             math_b=2;						
                                         break;   
@@ -193,43 +193,15 @@ void MOXA_Work_Function(void)
 							{
 								switch(math_c)
 								{	
-                                    case 0x05://reset计確セ
-                                            math_e=0x0001;
-                                            
+                                    case 0x06://眏рヘ玡计эΘreset计ノタ璽
+                                            Coulomb_Data.x2=math_d; //盢糶倒reset筿溃翴
+                                            math_e=Coulomb_Data.x2;
                                             Unlock_Coulomb();
-                                            Write_Coulomb_Data(0x09,0x0003);//0x0009  夹非筿甧秖 0.0~6553.5AH э0.1ah
-                                            while(!ModBus_Receiver.TIF);
-                                            ModBus_Receiver.TIF=0;	
-                                            
-                                            
-                                            Unlock_Coulomb();
-                                            Write_Coulomb_Data(0x0A,0x0253);//盢reset筿溃э59.5V
-                                            while(!ModBus_Receiver.TIF);
-                                            ModBus_Receiver.TIF=0;
-                                            
-                                            
+                                            Write_Coulomb_Data(0x0A,Coulomb_Data.x2);//盢reset筿溃э砞﹚
                                             index=&math_e; //ヘ玡筿甧秖
                                             math_b=2;
                                         break;
-                                    case 0x06://祇ネ计-┪琌0璶盢reset计筿溃э39v 计э0.1
-                                            math_e=0x0001;
-                                            
-                                            Unlock_Coulomb();
-                                            Write_Coulomb_Data(0x09,0x0002);//0x0009  夹非筿甧秖 0.0~6553.5AH э0.1ah
-                                            while(!ModBus_Receiver.TIF);
-                                            ModBus_Receiver.TIF=0;	
-                                            
-                                            
-                                            Unlock_Coulomb();
-                                            Write_Coulomb_Data(0x0A,0x0186);//盢reset筿溃э39V
-                                            while(!ModBus_Receiver.TIF);
-                                            ModBus_Receiver.TIF=0;
-                                            
-                                            
-                                            index=&math_e; //ヘ玡筿甧秖
-                                            math_b=2;
-                                        break;
-                                    case 0x07://盢计эΘ0.1Ah
+                                    case 0x07://盢ヘ玡计эΘ砞﹚
                                             Coulomb_Data.Residual_Electricity = math_d; //盢糶倒ヘ玡筿甧秖
                                             math_e=Coulomb_Data.Residual_Electricity;
                                             Unlock_Coulomb();

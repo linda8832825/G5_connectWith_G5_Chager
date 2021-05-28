@@ -86,6 +86,11 @@ void __attribute__((interrupt, no_auto_psv)) _U3RXInterrupt(void)
 							MOXA.Index=*index+9;
 					}					
 					index++;
+                    if(MOXA.RTIndex>8){
+                        MOXA.RTIndex=0;
+                        MOXA.ERRIF=1;	
+                        T3CONbits.TON=0;
+                    }
 				}	
 				else
 				{

@@ -292,7 +292,7 @@ void Conversion_Data_to_BMS(void)
 							IC_Data.Save_struct.Capacity_To_Voltage=Get_Capacity_To_Voltage_variable();	
 							IC_Data_Save_IF.Now_Total_Capacity_IF = 1;
 							IC_Data_Save_IF.Capacity_To_Voltage_IF = 1;
-							EEPROM.Save_Count=5000;						
+//							EEPROM.Save_Count=5000;						
 						}							
 					}
 				}						
